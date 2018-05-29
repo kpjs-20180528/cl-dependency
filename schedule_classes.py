@@ -28,7 +28,7 @@ def parse_input(input_file):
     return entries
 
 
-def create_and_link_graph(entries):
+def build_graph(entries):
     # create dict
     nodes = {}
     for entry in entries:
@@ -97,23 +97,27 @@ def bfs_walk(graph):
 
 
 def main(args):
-    # Process Input
-    print "--->Processing Input File %s" % args[1]
-    entries = parse_input(args[1])
+    try:
+        # Process Input
+        print "--->Processing Input File %s" % args[1]
+        entries = parse_input(args[1])
 
-    # create and Link the nodes
-    print "\n--->Building the graph"
-    nodes = create_and_link_graph(entries)
+        # create and Link the nodes
+        print "\n--->Building the graph"
+        nodes = build_graph(entries)
 
-    # Organize graph by tiers (with DFS)
-    print "\n--->Tiering the graph - to support BFS walking"
-    tiered_graph = organize_graph_by_tiers(nodes)
+        # Organize graph by tiers (with DFS)
+        print "\n--->Tiering the graph - to support BFS walking"
+        tiered_graph = organize_graph_by_tiers(nodes)
 
-    # BFS & output
-    print "\n--->Producing Output by BFS walk"
-    bfs_walk(tiered_graph)
+        # BFS & output
+        print "\n--->Producing Output by BFS walk"
+        bfs_walk(tiered_graph)
 
-    print "\n--->Done"
+        print "\n--->Done"
+
+    except Exception as e:
+        print "ERROR: %s" % e
 
 if __name__ == "__main__":
     main(sys.argv)
