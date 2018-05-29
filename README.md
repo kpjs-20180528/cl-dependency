@@ -2,11 +2,11 @@
 
 Helper for scheduling classes
 
-##Requirements
+## Requirements
 None
 
-##How to run
+## How to run
 Run by invoking schedule_classes.py
 
-*Exmaple*
-```\python schedule_classes.py data/physics.json```
+_Example_
+```python schedule_classes.py data/physics.json```
