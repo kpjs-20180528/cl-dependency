@@ -50,7 +50,7 @@ def find_node_tier_if_ready(node):
 
 
 def process_node(node, tiered_graph):
-    print "Processing %s" % node.name
+    print "Start Processing %s" % node.name
 
     # find tier for node
     tier, missing = find_node_tier_if_ready(node)
@@ -67,12 +67,14 @@ def process_node(node, tiered_graph):
     if tier not in tiered_graph:
         tiered_graph[tier] = []
     tiered_graph[tier].append(node)
+    print "Done Processing %s" % node.name
 
 
 def organize_graph_by_tiers(nodes):
     tiered_graph = {}
     for node in nodes.values():
-        process_node(node, tiered_graph)
+        if node.tier is None:
+            process_node(node, tiered_graph)
     return tiered_graph
 
 
